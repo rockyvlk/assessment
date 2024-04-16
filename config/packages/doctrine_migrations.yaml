@@ -1,0 +1,4 @@
+doctrine_migrations:
+    migrations_paths:
+        'Database\Migrations': '%kernel.project_dir%/database/migrations'
+    em: default

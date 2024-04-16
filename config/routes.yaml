@@ -1,0 +1,11 @@
+root:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: 'assessment.claim.create'
+        permanent: true
+
+web_controllers:
+    resource: ../src/Web/Http
+    type: attribute
+

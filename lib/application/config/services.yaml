@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Lib\Application\Command\MessengerCommandBus:
+        arguments: ['@command.bus']
+    Lib\Application\Command\CommandBusInterface: '@Lib\Application\Command\MessengerCommandBus'
+
+    Lib\Application\Query\MessengerQueryBus:
+        arguments: ['@query.bus']
+    Lib\Application\Query\QueryBusInterface: '@Lib\Application\Query\MessengerQueryBus'
+

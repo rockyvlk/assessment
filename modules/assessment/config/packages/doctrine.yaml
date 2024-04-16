@@ -1,0 +1,13 @@
+doctrine:
+    dbal:
+        types:
+            !php/const Assessment\Domain\Claim\ClaimIdType::NAME: 'Assessment\Domain\Claim\ClaimIdType'
+
+    orm:
+        mappings:
+            Warehouse\Domain:
+                is_bundle: false
+                dir: '%kernel.project_dir%/modules/assessment/src/Domain'
+                prefix: 'Assessment\Domain'
+                alias: Assessment\Domain
+                type: attribute

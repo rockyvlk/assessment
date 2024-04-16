@@ -1,0 +1,46 @@
+services:
+    nginx:
+        build:
+            context: ../..
+            dockerfile: ./docker/dev/nginx/Dockerfile
+        container_name: epa.nginx
+        ports:
+            - '${NGINX_PORT:-81}:80'
+        volumes:
+            - ../../:/app
+        depends_on:
+            - php
+        networks:
+            - epa-network
+
+    php:
+        build:
+            context: ../..
+            dockerfile: ./docker/dev/php/Dockerfile
+        container_name: epa.php
+        volumes:
+            - ../../:/app
+        depends_on:
+            - mariadb
+        networks:
+            - epa-network
+
+    mariadb:
+        image: mariadb:11.3
+        container_name: epa.mariadb
+        restart: always
+        ports:
+            - '${MARIADB_PORT:-3307}:3306'
+        environment:
+            MARIADB_ROOT_PASSWORD: '${MARIADB_ROOT_PASSWORD:-root}'
+            MARIADB_DATABASE: 'app'
+        volumes:
+            - epa-db-data:/var/lib/mysql
+        networks:
+            - epa-network
+
+volumes:
+    epa-db-data:
+
+networks:
+    epa-network:

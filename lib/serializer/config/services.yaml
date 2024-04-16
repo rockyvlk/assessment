@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Symfony\Component\Serializer\Normalizer\DenormalizerInterface:
+        factory: ['Lib\Serializer\SerializerFactory', 'create']
+
+    Symfony\Component\Serializer\Normalizer\NormalizerInterface:
+        factory: ['Lib\Serializer\SerializerFactory', 'create']
+
+    Lib\Serializer\Denormalizer: ~
+    Lib\Serializer\DenormalizerInterface: '@Lib\Serializer\Denormalizer'
+
+    Lib\Serializer\Normalizer: ~
+    Lib\Serializer\NormalizerInterface: '@Lib\Serializer\Normalizer'

@@ -1,0 +1,11 @@
+parameters:
+    assessments:
+        !php/enum Assessment\Domain\AssessmentType::Auto->value:
+            name: 'Оценка стоимости авто'
+            price: '500'
+        !php/enum Assessment\Domain\AssessmentType::Apartment->value:
+            name:  'Оценка стоимости квартиры'
+            price: '1000'
+        !php/enum Assessment\Domain\AssessmentType::Business->value:
+            name: 'Оценка стоимости бизнеса'
+            price: '2000'

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="form-wrapper">
+        {{ form_start(form) }}
+        <div class="row">
+            {{ form_row(form.assessment_type, { 'id': 'assessment-type' }) }}
+        </div>
+        <div class="row">
+            {{ form_row(form.email, { 'id': 'email' }) }}
+        </div>
+        <div class="row">
+            {{ form_row(form.price, { 'id': 'price' }) }}
+        </div>
+        <div class="row">
+            {{ form_row(form.submit) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+
+    <script type="text/javascript">
+        const selectElement = document.querySelector("#assessment-type");
+        let prices = {{ prices|json_encode()|raw  }};
+        document.querySelector('#price').value = prices[selectElement.value]
+
+        selectElement.addEventListener("change", (event) => {
+            document.querySelector('#price').value = prices[event.target.value]
+        });
+    </script>
+{% endblock %}

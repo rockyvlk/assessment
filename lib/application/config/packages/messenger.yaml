@@ -1,0 +1,10 @@
+framework:
+    messenger:
+        buses:
+            command.bus:
+                middleware:
+                    - validation
+
+            query.bus:
+                middleware:
+                    - validation

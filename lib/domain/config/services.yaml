@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Lib\Domain\Event\DomainEventListener: ~
+    Lib\Domain\Doctrine\Embeddable\NullableEmbeddedListener: ~
+
+    Lib\Domain\Doctrine\EntityFlusher: ~
+    Lib\Domain\Doctrine\EntityFlusherInterface: '@Lib\Domain\Doctrine\EntityFlusher'

@@ -1,0 +1,20 @@
+imports:
+    - { resource: parameters.yaml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Assessment\Domain\Claim\ClaimRepository: ~
+    Assessment\Domain\Claim\ClaimRepositoryInterface: '@Assessment\Domain\Claim\ClaimRepository'
+
+    Assessment\UseCases\:
+        resource: '../src/UseCases/**/*Handler.php'
+        tags: [ { name: messenger.message_handler, bus: command.bus } ]
+
+    Assessment\Services\AssessmentService:
+        arguments:
+            $assessments: '%assessments%'
+
+    Assessment\Services\AssessmentServiceInterface: '@Assessment\Services\AssessmentService'

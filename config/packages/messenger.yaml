@@ -1,0 +1,13 @@
+framework:
+    messenger:
+#        failure_transport: failed
+        default_bus: message.bus
+
+        buses:
+            message.bus: ~
+
+        transports:
+             sync: 'sync://'
+
+        routing:
+#             'App\Queue\Test': async

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+    bootstrap="tests/bootstrap.php"
+    executionOrder="depends,defects"
+    colors="true" backupGlobals="false"
+    forceCoversAnnotation="false"
+    beStrictAboutTodoAnnotatedTests="true"
+    beStrictAboutCoversAnnotation="false"
+    beStrictAboutOutputDuringTests="true"
+    cacheResult="false"
+    cacheResultFile="var/cache/.phpunit"
+    verbose="true"
+>
+
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="APP_SECRET" value="$ecretf0rt3st" force="true"/>
+        <server name="KERNEL_CLASS" value="App\Kernel"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
+        <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
+        <server name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
+
+        <env name="APP_ENV" value="test" force="true"/>
+        <env name="APP_SECRET" value="b49da912833275fdd27372b0876081ee"/>
+
+         <env name="DATABASE_URL" value="mysql://root:root@mariadb/app_test?serverVersion=mariadb-11.3.0"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="functional">
+            <directory>src/Web/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">src</directory>
+            <directory suffix=".php">lib</directory>
+            <directory suffix=".php">modules</directory>
+        </include>
+
+        <exclude>
+            <file>src/Kernel.php</file>
+            <directory>lib/domain/tests</directory>
+            <directory>lib/cqrs/tests</directory>
+        </exclude>
+    </coverage>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+    </listeners>
+
+    <extensions>
+        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
+    </extensions>
+</phpunit>
